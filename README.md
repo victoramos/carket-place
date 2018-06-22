@@ -1,3 +1,11 @@
 # carket-place
-MVVM Demo project with RxJava, Retrofit and RoomDatabase
+This project demonstrates a simple application of MMV pattern combined with RxJava, Retrofit and RoomDatabase
+
+# Used Technologies
+Retrofit
+RoomDatabase
+RxJava
+ConstrainLayout
+Json Mapping
+RESTful API
 
