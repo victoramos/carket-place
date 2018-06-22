@@ -7,9 +7,11 @@ import com.example.victor.carketplace.database.model.ProductDetail;
 import com.example.victor.carketplace.repository.CartRepository;
 import java.util.List;
 import io.reactivex.Flowable;
+import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 
 public class CartViewModel {
+    private int mMaxCartValue = 100000;
     private CartRepository mRepositoryManager;
 
     public CartViewModel(Application application){
@@ -18,6 +20,10 @@ public class CartViewModel {
 
     public Flowable<List<CartItem>> getAllItems(){
         return mRepositoryManager.getAllItems();
+    }
+
+    public Single<Integer> getCartTotal(){
+        return mRepositoryManager.getCartTotal().onErrorReturn( (error) -> 0);
     }
 
     public void storeCartItemInDb(CartItem item) {
@@ -44,5 +50,13 @@ public class CartViewModel {
         item.setModel(product.getModel());
 
         return item;
+    }
+
+    public boolean checkCartValue(Integer currentValue){
+        return currentValue < mMaxCartValue;
+    }
+
+    public Integer getMaxCartTotal() {
+        return mMaxCartValue;
     }
 }

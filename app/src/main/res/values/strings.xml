@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">CarketPlace</string>
+    <string name="unknow_error_positive_button">Ok</string>
+    <string name="unknow_error_title">Ops</string>
+    <string name="unknow_error_body">Um erro inesperado ocorreu. Tente novamente mais tarde.</string>
+    <string name="full_cart_error_title">Ops</string>
+    <string name="full_cart_unknow_error_body">O seu carrinho está cheio de mais, finalize suas compras.</string>
+    <string name="full_cart_unknow_error_positive_button">ok</string>
+    <string name="app_coin">R$ %1$d</string>
+    <string name="buy">Comprar</string>
+    <string name="add_cart">Adicionar no carrinho</string>
+    <string name="total">Total</string>
+    <string name="qtd">QTD:</string>
 </resources>

@@ -12,7 +12,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        android:text="Add to Cart" />
+        android:text="" />
 
     <ImageView
         android:id="@+id/image_close"
@@ -62,5 +62,5 @@
         android:theme="@style/AppTheme.Gray"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:text="ADICIONAR NO CARRINHO" />
+        android:text="@string/add_cart" />
 </RelativeLayout>

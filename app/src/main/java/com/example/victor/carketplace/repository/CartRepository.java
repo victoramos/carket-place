@@ -9,6 +9,7 @@ import java.util.List;
 
 import io.reactivex.Flowable;
 import io.reactivex.Observable;
+import io.reactivex.Single;
 
 public class CartRepository {
     private CartDAO mCartDAO;
@@ -19,6 +20,10 @@ public class CartRepository {
 
     public Flowable<List<CartItem>> getAllItems(){
         return mCartDAO.getAll();
+    }
+
+    public Single<Integer> getCartTotal(){
+        return mCartDAO.getCartTotal();
     }
 
     public Observable<Long> storeCartItemInDb(CartItem item) {

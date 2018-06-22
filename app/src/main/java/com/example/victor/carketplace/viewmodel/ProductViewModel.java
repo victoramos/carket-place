@@ -15,8 +15,8 @@ public class ProductViewModel {
         mRepositoryManager = new ProductRepository(application);
     }
 
-    public Observable<List<Product>> getAllProducts() {
-        return mRepositoryManager.getAllProducts();
+    public Observable<List<Product>> getAllProducts(Integer page) {
+        return mRepositoryManager.getAllProducts(page);
     }
 
     public Flowable<ProductDetail> getProductDetail(Long productId) {

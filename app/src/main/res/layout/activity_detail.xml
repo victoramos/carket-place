@@ -31,6 +31,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:src="@drawable/no_image"
                 android:id="@+id/image_product_thumb"
                 android:layout_width="0dp"
                 android:layout_height="250dp"
@@ -42,23 +43,21 @@
                 android:id="@+id/text_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
-                android:text="Nissan GT-R"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image_product_thumb" />
+                app:layout_constraintTop_toBottomOf="@+id/image_product_thumb"
+                tools:text="Nissan GT-R" />
 
             <TextView
                 android:id="@+id/text_brand"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
-                android:text="Nissan"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_name" />
+                app:layout_constraintTop_toBottomOf="@+id/text_name"
+                tools:text="Nissan" />
 
             <TextView
                 android:id="@+id/text_description"
@@ -66,17 +65,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="Text"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_brand" />
+                app:layout_constraintTop_toBottomOf="@+id/text_brand"
+                tools:text="Text" />
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 
@@ -95,36 +92,26 @@
             android:id="@+id/text_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="2dp"
-            android:layout_marginStart="2dp"
-            android:text="25000.0"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView11"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.515" />
+            tools:text="25000.0" />
 
         <Button
             android:id="@+id/button_buy"
-            android:layout_width="wrap_content"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="30dp"
-            android:text="COMPRAR"
+            android:layout_marginEnd="40dp"
+            android:text="@string/buy"
             android:textColor="#B3FFFFFF"
             android:theme="@style/AppTheme.Gray"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:text="R$"
-            app:layout_constraintBottom_toBottomOf="@+id/text_price"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/text_price"
-            app:layout_constraintVertical_bias="0.0" />
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

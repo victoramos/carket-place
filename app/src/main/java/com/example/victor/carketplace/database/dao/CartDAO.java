@@ -20,6 +20,9 @@ public interface CartDAO {
     @Query("SELECT * FROM cart_item")
     Flowable<List<CartItem>> getAll();
 
+    @Query("SELECT SUM(amount * price) FROM cart_item")
+    Single<Integer> getCartTotal();
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     long addToCart(CartItem c);
 

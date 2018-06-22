@@ -1,7 +1,9 @@
 package com.example.victor.carketplace.view.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.example.victor.carketplace.R;
 import com.example.victor.carketplace.database.model.Product;
 import java.util.ArrayList;
@@ -23,24 +29,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     public Adapter(Context context){
         mContext = context;
-    }
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public final ImageView productThumb;
-        public final TextView name;
-        public final TextView model;
-        public final TextView value;
-        public final Button deleteBtn;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-
-            productThumb = itemView.findViewById(R.id.image_product);
-            name = itemView.findViewById(R.id.text_name);
-            model = itemView.findViewById(R.id.text_model);
-            value = itemView.findViewById(R.id.text_value);
-            deleteBtn = itemView.findViewById(R.id.remove_btn);
-        }
     }
 
     @NonNull
@@ -60,7 +48,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
         holder.model.setText(product.getModel());
         holder.name.setText(product.getName());
-        holder.value.setText("R$ " + product.getPrice());
+        holder.value.setText(mContext.getResources().getString(R.string.app_coin, product.getPrice()));
 
         holder.itemView.setOnClickListener(v -> mListener.onItemClick(mData.get(position).getId()));
     }
@@ -71,7 +59,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     }
 
     public void setData(List<Product> data) {
-        this.mData = data;
+        this.mData.addAll(data);
         notifyDataSetChanged();
     }
 
@@ -81,5 +69,23 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     public interface OnItemClick{
         void onItemClick(long id);
+    }
+
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        final ImageView productThumb;
+        final TextView name;
+        final TextView model;
+        final TextView value;
+        final Button deleteBtn;
+
+        ViewHolder(View itemView) {
+            super(itemView);
+
+            productThumb = itemView.findViewById(R.id.image_product);
+            name = itemView.findViewById(R.id.text_name);
+            model = itemView.findViewById(R.id.text_model);
+            value = itemView.findViewById(R.id.text_value);
+            deleteBtn = itemView.findViewById(R.id.remove_btn);
+        }
     }
 }

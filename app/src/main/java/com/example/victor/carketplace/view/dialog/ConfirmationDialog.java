@@ -9,21 +9,24 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.victor.carketplace.R;
-
 import io.reactivex.subjects.PublishSubject;
 import io.reactivex.subjects.Subject;
 
 public class ConfirmationDialog extends DialogFragment {
     private Integer mAmount = 1;
-    private Integer mTotal = 0;
+    private Integer mAvailable = 0;
 
-    public Subject<Integer> resultSubject = PublishSubject.create();
+    private Subject<Integer> resultSubject = PublishSubject.create();
+    private int mTotal;
+    private int mPrice;
 
-    public static ConfirmationDialog newInstance(String title, Integer total) {
+    public static ConfirmationDialog newInstance(String title, Integer available, Integer currentCartTotal, Integer price) {
         ConfirmationDialog frag = new ConfirmationDialog();
         Bundle args = new Bundle();
         args.putString("title", title);
-        args.putInt("total", total);
+        args.putInt("available", available);
+        args.putInt("currentCartTotal", currentCartTotal);
+        args.putInt("price", price);
         frag.setArguments(args);
         return frag;
     }
@@ -49,14 +52,25 @@ public class ConfirmationDialog extends DialogFragment {
 
         if(getArguments() != null){
             title.setText(getArguments().getString("title"));
-            mTotal = getArguments().getInt("total");
+            mAvailable = getArguments().getInt("available");
+            mTotal = getArguments().getInt("currentCartTotal");
+            mPrice = getArguments().getInt("price");
+        }
+
+        Integer temp = Math.round(mTotal / mPrice);
+        if (temp < mAvailable){
+            mAvailable = temp;
         }
 
         return view;
     }
 
+    public Subject<Integer> getObservable(){
+        return resultSubject;
+    }
+
     private Integer add(){
-        if(mAmount.equals(mTotal)){
+        if(mAmount.equals(mAvailable)){
             return mAmount;
         }
 

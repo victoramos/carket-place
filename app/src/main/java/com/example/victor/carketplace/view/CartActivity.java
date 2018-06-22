@@ -9,12 +9,14 @@ import com.example.victor.carketplace.R;
 import com.example.victor.carketplace.view.adapter.CartAdapter;
 import com.example.victor.carketplace.viewmodel.CartViewModel;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class CartActivity extends AppCompatActivity {
 
     private CartAdapter mAdapter;
     private CartViewModel viewModel;
+    private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,18 +39,24 @@ public class CartActivity extends AppCompatActivity {
         mAdapter = new CartAdapter(getApplicationContext());
         mRecyclerView.setAdapter(mAdapter);
 
-        CartAdapter.removeSubject.subscribe((item) -> {
-                    viewModel.deleteCartItem(item);
-                }, (error) -> {
+        mCompositeDisposable.add(CartAdapter.removeSubject.subscribe((item) ->
+                viewModel.deleteCartItem(item)
+        ));
 
-                }, () -> {
-
-                }
-        );
-
-        viewModel.getAllItems()
+        mCompositeDisposable.add(viewModel.getAllItems()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe( (items) -> mAdapter.setData(items));
+                .subscribe( (items) -> mAdapter.setData(items)));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mCompositeDisposable.dispose();
+    }
+
+    @Override
+    public void onBackPressed() {
+
     }
 }

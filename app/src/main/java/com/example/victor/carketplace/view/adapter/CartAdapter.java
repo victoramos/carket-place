@@ -20,31 +20,10 @@ import io.reactivex.subjects.Subject;
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     private Context mContext;
     private List<CartItem> mCartItems = new ArrayList<>();
-
     public static final Subject<CartItem> removeSubject = PublishSubject.create();
 
     public CartAdapter(Context context) {
         mContext = context;
-    }
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public final ImageView productThumb;
-        public final TextView name;
-        public final TextView brand;
-        public final TextView price;
-        public final TextView amount;
-        public final ImageView removeBtn;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-
-            productThumb = itemView.findViewById(R.id.image_thumb);
-            name = itemView.findViewById(R.id.text_name);
-            brand = itemView.findViewById(R.id.text_brand);
-            price = itemView.findViewById(R.id.text_price);
-            amount = itemView.findViewById(R.id.text_amount);
-            removeBtn = itemView.findViewById(R.id.image_remove);
-        }
     }
 
     @NonNull
@@ -64,8 +43,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
         holder.brand.setText(cartItem.getModel());
         holder.name.setText(cartItem.getName());
-        holder.price.setText(cartItem.getPrice().toString());
-        holder.amount.setText(cartItem.getAmount().toString());
+        holder.price.setText(mContext.getResources().getString(R.string.app_coin, (cartItem.getPrice() * cartItem.getAmount())));
+        holder.amount.setText(String.valueOf(cartItem.getAmount()));
 
         holder.removeBtn.setOnClickListener(v -> removeSubject.onNext(cartItem));
     }
@@ -78,5 +57,25 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     public void setData(List<CartItem> items){
         mCartItems = items;
         notifyDataSetChanged();
+    }
+
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        final ImageView productThumb;
+        final TextView name;
+        final TextView brand;
+        final TextView price;
+        final TextView amount;
+        final ImageView removeBtn;
+
+        ViewHolder(View itemView) {
+            super(itemView);
+
+            productThumb = itemView.findViewById(R.id.image_thumb);
+            name = itemView.findViewById(R.id.text_name);
+            brand = itemView.findViewById(R.id.text_brand);
+            price = itemView.findViewById(R.id.text_price);
+            amount = itemView.findViewById(R.id.text_amount);
+            removeBtn = itemView.findViewById(R.id.image_remove);
+        }
     }
 }

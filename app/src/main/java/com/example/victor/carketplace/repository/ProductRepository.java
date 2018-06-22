@@ -17,7 +17,7 @@ public class ProductRepository {
         mProductRequests = ServerAPI.getInstance().product();
     }
 
-    public Observable<List<Product>> getAllProducts(){
+    public Observable<List<Product>> getAllProducts(Integer page){
         return mProductRequests.getAllProducts();
     }
 

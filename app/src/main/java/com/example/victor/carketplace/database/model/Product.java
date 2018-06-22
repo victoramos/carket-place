@@ -26,11 +26,11 @@ public class Product {
 
     @SerializedName("quantidade")
     @ColumnInfo(name = "amount")
-    private String amount;
+    private Integer amount;
 
     @SerializedName("preco")
     @ColumnInfo(name = "price")
-    private String price;
+    private Integer price;
 
     @SerializedName("imagem")
     @ColumnInfo(name = "image")
@@ -68,19 +68,19 @@ public class Product {
         this.model = model;
     }
 
-    public String getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(Integer amount) {
         this.amount = amount;
     }
 
-    public String getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
