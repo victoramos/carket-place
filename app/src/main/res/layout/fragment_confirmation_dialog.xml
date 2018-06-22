@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:text="Add to Cart" />
+
+    <ImageView
+        android:id="@+id/image_close"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_close"
+        android:layout_alignParentEnd="true"/>
+
+    <LinearLayout
+        android:id="@+id/linear_count_group"
+        android:layout_below="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/image_remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_remove"
+            android:layout_marginRight="20dp"/>
+
+        <TextView
+            android:id="@+id/text_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/image_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add"
+            android:layout_marginLeft="20dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_confirm"
+        android:layout_below="@+id/linear_count_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#B3FFFFFF"
+        android:theme="@style/AppTheme.Gray"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="ADICIONAR NO CARRINHO" />
+</RelativeLayout>
